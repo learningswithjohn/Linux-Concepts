@@ -67,60 +67,47 @@ Assigns a PID
 Schedules CPU time
 Cleans up resources when it exits
 ===================================================================================================================================================================
-Memory Management
 
-Suppose:
+Layer 3 - System Libraries
 
-Chrome requests 2 GB
-Tomcat requests 8 GB
-MySQL requests 4 GB
+Applications don't usually talk to the kernel directly. Instead, they use libraries.
 
-The kernel decides:
+Ex: printf("Hello");
 
-Where to allocate memory
-Whether to use swap
-Which pages to reclaim
-Whether the OOM Killer must terminate a process
-
-Interview question:
-
-What is OOMKilled?
-
-You should know that it's the kernel terminating a process because the system ran out of memory.
+Eventually, the C library (glibc) invokes a system call to ask the kernel to perform the requested operation. This abstraction makes application development much easier.
 ===================================================================================================================================================================
-File System Management
 
-When you run: cat test.txt
+Layer 4 - Shell
 
-The kernel:
+The shell is the command interpreter and it reads your commands, parses them, start programs, handles variables, pipes and redirection.
 
-Checks permissions
-Finds the inode
-Reads blocks from disk
-Returns the contents to the application
+Ex: bash, sh, zsh, ksh
+
+when you run : ls -lrt, the shell does not execute itself. It locates the executable path (where ls is defined), creates a new process, and asks the kernel to run it.
 ===================================================================================================================================================================
-Networking
 
-When a browser opens: https://google.com
+Layer 5 - User Applications
 
-The kernel:
-
-Creates a socket
-Handles TCP/IP
-Sends packets
-Receives packets
-Closes the connection
+Applications like Tomcat, Docker, Kubernetes, Python, MySQL all rely on the Operating system services provided by the lower layers.
 ===================================================================================================================================================================
-Device Drivers
 
-Suppose you insert a USB drive.
+What happens when you run : ls -lrt
 
-The kernel:
+1. The shell reads the command.
+2. It searches the directories listed in $PATH to find the ls executable.
+3. It asks the kernel to create a new process.
+4. The kernel loads the executable into memory.
+5. The ls program requests the directory information through system calls.
+6. The kernel reads the directory entries and metadata from the filesystem.
+7. the kernel returns the data to ls.
+8. ls formats the output.
+9. The shell displays the output on your terminal.
 
-Detects it
-Loads the correct driver
-Makes it available to the operating system
-===================================================================================================================================================================
+
+
+
+
+
 
 
 
