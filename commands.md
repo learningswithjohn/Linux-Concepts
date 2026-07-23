@@ -80,4 +80,36 @@ Immediate Actions:
 5. Right-size the server or container limits.
 ===========================================================================================================================================================
 
+Case -2 : when you run top or uptime command, what is load average means?
+
+Load average shows how busy your system is. It counts how many programs are actively using the CPU or waiting for their turn.
+
+If Load Average is: 0.40, 0.75, 1.20
+
+These numbers represent the exponential moving average of system load over three specific time frames: Last 1 minute, Last 5 minutes, Last 15 minutes
+
+On a 2 core CPU, if load average is : 1, 2, 2.5 
+1: CPU has some capacity still
+2: CPU is utilized 100% (since it is 2 core cpu and load average is 2...2/2=100% utilization)
+2.5: CPU is overloaded and Processes are waiting.
+===========================================================================================================================================================
+
+Case -3 : top vs ps ....which one to use when?
+
+Use top (or htop) when you need to:
+
+1. Monitor live activity: Watch CPU and memory usage fluctuate second-by-second.
+2. Identify resource hogs: Instantly spot which process is suddenly spiking your CPU or draining RAM right now.
+3. Actively manage processes: Kill a process (by pressing k) or change its priority (r) without leaving the screen.
+4. Track system health: Keep an eye on overall load average, uptime, and total memory usage in one continuous dashboard.
+
+Use ps when you need to:
+
+1. Find a specific process: Quickly check if a background service (like Docker or Nginx) is running (ps aux | grep nginx).
+2. Write automation scripts: Parse process IDs (PIDs) using tools like awk or grep inside Bash scripts.
+3. Inspect specific attributes: View hidden details like the exact command line path used to start an app, parent-child relationships (ps -ef), or custom columns (ps -eo pid,ppid,cmd).
+===========================================================================================================================================================
+
+
+
 
