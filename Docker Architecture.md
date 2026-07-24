@@ -19,6 +19,13 @@ Docker daemon:
 
 The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
 
+Docker daemon is responsible for:
+
+1. Pulling images
+2. Building images
+3. Creating/Starting/Stopping containers
+4. Managing volumes, networks
+
 Docker client:
 
 The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
@@ -68,6 +75,7 @@ Breakdown of the above command:
  Note :
 
  You can also you another path instead of . (Dot) , like below:
+ 
  docker build -f /path/to/Dockerfile -t john123/my-first-docker-image:latest /path/to/project/source
- ====================================================================================================================================================================
+ ===================================================================================================================================================================
 
